@@ -1,44 +1,44 @@
-from student.student import Student, get_student_with_more_classes
+from student.student import add_course, make_student, get_student_with_more_classes, summary, get_num_classes, get_student_with_more_classes
 
-def test_init():
-    name = "Ada Lovelace"
-    level = "sophomore"
-    courses = ["mathematics", "foundations of computing"]
+def test_make_student():
+    name = 'Ada Lovelace'
+    level = 'sophomore'
+    courses = ['mathematics', 'foundations of computing']
 
-    ada = Student(name, level, courses)
+    ada = make_student(name, level, courses)
 
-    assert ada.name == name
-    assert ada.level == level
-    assert ada.courses == courses
+    assert ada['name'] == name
+    assert ada['level'] == level
+    assert ada['courses'] == courses
 
-def test_add_class():
-    new_class = 'Intro to Feminism'
-    charles = Student("Charles Babbage", "senior", ["mechanical engineering"])
-    charles.add_class(new_class)
+def test_add_course():
+    new_course = 'Intro to Feminism'
+    charles = make_student('Charles Babbage', 'senior', ['mechanical engineering'])
+    add_course(charles, new_course)
 
-    assert len(charles.courses) == 2
-    assert new_class in charles.courses
+    assert len(charles['courses']) == 2
+    assert new_course in charles['courses']
 
 def test_get_num_classes():
-    george = Student("George Byron", "senior", ["advanced poetry"])
+    george = make_student('George Byron', 'senior', ['advanced poetry'])
 
-    assert george.get_num_classes() == 1
+    assert get_num_classes(george) == 1
 
 def test_summary():
-    anne = Student(
-        "Anne Byron",
-        "senior",
-        ["theory of religion", "theory of morality"]
+    anne = make_student(
+        'Anne Byron',
+        'senior',
+        ['theory of religion', 'theory of morality']
     )
 
-    assert anne.summary() == "Anne Byron is a senior enrolled in 2 classes"
+    assert summary(anne) == 'Anne Byron is a senior enrolled in 2 classes'
 
 def test_get_student_with_more_classes():
-    charles = Student("Charles Babbage", "senior", ["mechanical engineering"])
-    ada = Student(
-        "Ada Lovelace",
-        "sophomore",
-        ["mathematics", "foundations of computing"]
+    charles = make_student('Charles Babbage', 'senior', ['mechanical engineering'])
+    ada = make_student(
+        'Ada Lovelace',
+        'sophomore',
+        ['mathematics', 'foundations of computing']
     )
 
     # TODO: write assertions

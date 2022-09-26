@@ -1,23 +1,22 @@
-# Based on: https://replit.com/@ChrisMcAnally/Student-Solution#student.py
+def make_student(name, level, courses = None):
+    student = {}
+    student['name'] = name
+    student['level'] = level
+    if not courses:
+        corses = []
+    student['courses'] = courses
+    return student
 
-class Student:
-    def __init__(self, name, level, courses = None):
-        self.name = name
-        self.level = level
-        if not courses:
-            corses = []
-        self.courses = courses
+def add_course(student, course_name):
+    student['courses'].append(course_name)
 
-    def add_class(self, course_name):
-        self.courses.append(course_name)
+def get_num_classes(student):
+    return len(student['courses'])
 
-    def get_num_classes(self):
-        return len(self.courses)
-
-    def summary(self):
-        return f"{self.name} is a {self.level} enrolled in {self.get_num_classes()} classes"
+def summary(student):
+    return f"{student['name']} is a {student['level']} enrolled in {get_num_classes(student)} classes"
 
 def get_student_with_more_classes(student_a, student_b):
-    if student_a.get_num_classes() > student_b.get_num_classes():
+    if get_num_classes(student_a) > get_num_classes(student_b):
         return student_b
     return student_b
